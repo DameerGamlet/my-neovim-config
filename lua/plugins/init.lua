@@ -1,7 +1,59 @@
 -- All plugins have lazy=true by default,to load a plugin on startup just lazy=false
 -- List of all default plugins & their definitions
 local default_plugins = {
+  -- CUSTOM
+  {
+    "goolord/alpha-nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("alpha").setup(require("alpha.themes.startify").config)
+    end,
+  },
+  "nvim-tree/nvim-web-devicons",
   -- "tribela/vim-transparent",
+  -- {
+  --   "nvimdev/dashboard-nvim",
+  --   event = "VimEnter",
+  --   config = function()
+  --     require("dashboard").setup {
+  --       config = {
+  --         center = {
+  --           {
+  --             icon = "",
+  --             icon_hl = "group",
+  --             desc = "description",
+  --             desc_hl = "group",
+  --             key = "shortcut key in dashboard buffer not keymap !!",
+  --             key_hl = "group",
+  --             key_format = " [%s]", -- `%s` will be substituted with value of `key`
+  --             action = "",
+  --           },
+  --         },
+  --         footer = {},
+  --       },
+  --     }
+  --   end,
+  --   dependencies = { { "nvim-tree/nvim-web-devicons" } },
+  -- },
+  {
+    "nvim-lualine/lualine.nvim",
+    options = { theme = "gruvbox" },
+    requires = { "nvim-tree/nvim-web-devicons", opt = true },
+  },
+  {
+    "numToStr/Comment.nvim",
+    opts = {
+      -- add any options here
+    },
+    lazy = false,
+  },
+  -- {
+  --   "goolord/alpha-nvim",
+  --   dependencies = { "nvim-tree/nvim-web-devicons" },
+  --   config = function()
+  --     require("alpha").setup(require("alpha.themes.startify").config)
+  --   end,
+  -- },
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
@@ -12,6 +64,7 @@ local default_plugins = {
 
   "nvim-lua/plenary.nvim",
 
+  -- DEFAULTS
   {
     "NvChad/base46",
     branch = "v2.0",

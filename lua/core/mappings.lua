@@ -14,13 +14,10 @@ M.general = {
     ["<C-j>"] = { "<Down>", "Move down" },
     ["<C-k>"] = { "<Up>", "Move up" },
     ["<C-z>"] = { "<cmd> u <CR>", "Undo" },
-    ["<C-y>"] = { "<C-r>", "Redo" },
-
     ["<C-s>"] = { "<cmd> w <CR>", "Save file" },
   },
 
   n = {
-
     ["<Esc>"] = { ":noh <CR>", "Clear highlights" },
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "Window left" },
@@ -54,7 +51,9 @@ M.general = {
     ["<leader>qq"] = { "<cmd> q <CR>", "Close" },
 
     -- Copy all
-    ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
+    -- ["<C-c>"] = { "<cmd> %y+ <CR>", "Copy whole file" },
+    ["<C-c>"] = { "<cmd> \"+y <CR>", "Copy text" },
+    ["<C-p"] = { "<cmd> \"+p <CR>", "Paste text" },
 
     -- line numbers
     ["<leader>nn"] = { "<cmd> set nu! <CR>", "Toggle line number" },
@@ -155,28 +154,28 @@ M.lspconfig = {
   -- See `<cmd> :help vim.lsp.*` for documentation on any of the below functions
 
   n = {
-    ["gD"] = {
+    ["<leader>lD"] = {
       function()
         vim.lsp.buf.declaration()
       end,
       "LSP declaration",
     },
 
-    ["gd"] = {
+    ["<leader>lg"] = {
       function()
         vim.lsp.buf.definition()
       end,
       "LSP definition",
     },
 
-    ["K"] = {
+    ["<leader>lh"] = {
       function()
         vim.lsp.buf.hover()
       end,
       "LSP hover",
     },
 
-    ["gi"] = {
+    ["<leader>li"] = {
       function()
         vim.lsp.buf.implementation()
       end,
@@ -197,7 +196,7 @@ M.lspconfig = {
       "LSP definition type",
     },
 
-    ["<leader>lr"] = {
+    ["<leader>la"] = {
       function()
         require("nvchad.renamer").open()
       end,
@@ -211,7 +210,7 @@ M.lspconfig = {
       "LSP code action",
     },
 
-    ["gr"] = {
+    ["<leader>lr"] = {
       function()
         vim.lsp.buf.references()
       end,
@@ -299,7 +298,7 @@ M.telescope = {
     ["<leader>tgs"] = { "<cmd> Telescope git_status <CR>", "Git status" },
 
     -- pick a hidden term
-    ["<leader>tt"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
+    ["<leader>ttp"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
 
     -- theme switcher
     ["<leader>tth"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
@@ -422,7 +421,7 @@ M.gitsigns = {
 
   n = {
     -- Navigation through hunks
-    ["]c"] = {
+    ["<leader>g]"] = {
       function()
         if vim.wo.diff then
           return "]c"
@@ -436,7 +435,7 @@ M.gitsigns = {
       opts = { expr = true },
     },
 
-    ["[c"] = {
+    ["<leader>g["] = {
       function()
         if vim.wo.diff then
           return "[c"
@@ -451,14 +450,14 @@ M.gitsigns = {
     },
 
     -- Actions
-    ["<leader>rh"] = {
+    ["<leader>ghr"] = {
       function()
         require("gitsigns").reset_hunk()
       end,
       "Reset hunk",
     },
 
-    ["<leader>ph"] = {
+    ["<leader>ghp"] = {
       function()
         require("gitsigns").preview_hunk()
       end,
